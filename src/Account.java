@@ -14,17 +14,23 @@ public class Account {
 	
 	// function to deposit money in the account
 	void deposit(int amount) {
-		if(amount != 0) {
+		if(amount != 0 && amount > 0) {
 			balance += amount;
 			previousTransaction = amount;
+		}
+		else {
+			System.out.println("You cannot add a negative amount to your account!");
 		}
 	}
 	
 	// function to withdraw money from account
 	void withdraw(int amount) {
-		if(amount != 0) {
-			balance += balance - amount;
+		if(amount != 0 && amount > 0) {
+			balance = balance - amount;
 			previousTransaction = -amount;
+		}
+		else {
+			System.out.println("Check your balance before making this operation!");
 		}
 	}
 	
@@ -47,13 +53,47 @@ public class Account {
 		
 		System.out.println("Welcome " + name + "!");
 		System.out.println("Here's your ID: " + id);
+		System.out.println();
+		
 		System.out.println("What do you want to do today? ");
 		System.out.println("1 - Check your balance");
 		System.out.println("2 - Make a deposit");
 		System.out.println("3 - Make a withdrawal");
 		System.out.println("4 - View your transactions");
 		System.out.println("5 - Exit");
-		int option = scanner.nextInt();
+		System.out.println();
+		
+		int option = 0;
+		do {
+			System.out.println("Enter a option from menu:");
+			option = scanner.nextInt();
+			switch(option){
+				case 1:
+					System.out.println("Balance = R$" + balance);
+					break;
+				case 2:
+					System.out.println("How much do you wanna deposit?!");
+					int amountDeposit = scanner.nextInt();
+					deposit(amountDeposit); 
+					break;
+				case 3:
+					System.out.println("How much do you wanna withdraw?!");
+					int amountWithdraw = scanner.nextInt();
+					withdraw(amountWithdraw);
+					break;
+				case 4:
+					getPreviousTransaction();
+					break;
+				case 5:
+					System.out.println("Transactions ended!");
+					break;
+				default:
+					System.out.println("Invalid option!");
+					break;
+			}
+		} while(option  != 5);
+		
+		System.out.println("Thank you for using our Bank!");
 		scanner.close();
 	}
 }
