@@ -55,13 +55,14 @@ public class Account {
 		System.out.println("Here's your ID: " + id);
 		System.out.println();
 		
-		System.out.println("What do you want to do today? ");
-		System.out.println("1 - Check your balance");
-		System.out.println("2 - Make a deposit");
-		System.out.println("3 - Make a withdrawal");
-		System.out.println("4 - View your transactions");
-		System.out.println("5 - Exit");
-		System.out.println();
+		System.out.println("""
+			  What do you want to do today? 
+			  1 - Check your balance
+			  2 - Make a deposit
+			  3 - Make a withdrawal
+			  4 - View your transactions
+			  5 - Exit
+			""".formatted());
 		
 		int option = 0;
 		do {
